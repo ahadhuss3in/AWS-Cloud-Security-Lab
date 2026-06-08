@@ -1,0 +1,167 @@
+{
+    "Events": [
+        {
+            "EventId": "51be2192-c71d-42af-9da5-15a2d1020a8f",
+            "EventName": "ListUsers",
+            "ReadOnly": "true",
+            "AccessKeyId": "AKIAXYFFBJ74PFFQKYRM",
+            "EventTime": "2026-06-08T22:52:21+03:00",
+            "EventSource": "iam.amazonaws.com",
+            "Username": "vulnerable-user",
+            "Resources": [],
+            "CloudTrailEvent": "{\"eventVersion\":\"1.11\",\"userIdentity\":{\"type\":\"IAMUser\",\"principalId\":\"AIDAXYFFBJ74DLYXAQ2AA\",\"arn\":\"arn:aws:iam::532922060792:user/vulnerable-user\",\"accountId\":\"532922060792\",\"accessKeyId\":\"AKIAXYFFBJ74PFFQKYRM\",\"userName\":\"vulnerable-user\"},\"eventTime\":\"2026-06-08T19:52:21Z\",\"eventSource\":\"iam.amazonaws.com\",\"eventName\":\"ListUsers\",\"awsRegion\":\"us-east-1\",\"sourceIPAddress\":\"78.101.130.87\",\"userAgent\":\"aws-cli/2.27.59 md/awscrt#0.26.1 ua/2.1 os/macos#24.6.0 md/arch#arm64 lang/python#3.13.5 md/pyimpl#CPython m/b,E,Z,C cfg/retry-mode#standard md/installer#source md/prompt#off md/command#iam.list-users\",\"requestParameters\":null,\"responseElements\":null,\"requestID\":\"5051b097-b428-441f-bd48-708bfcd0d60c\",\"eventID\":\"51be2192-c71d-42af-9da5-15a2d1020a8f\",\"readOnly\":true,\"eventType\":\"AwsApiCall\",\"managementEvent\":true,\"recipientAccountId\":\"532922060792\",\"eventCategory\":\"Management\",\"tlsDetails\":{\"tlsVersion\":\"TLSv1.3\",\"cipherSuite\":\"TLS_AES_128_GCM_SHA256\",\"clientProvidedHostHeader\":\"iam.amazonaws.com\"}}"
+        },
+        {
+            "EventId": "68fa59f6-1a49-4cee-822b-92d75f8ddaed",
+            "EventName": "ListUsers",
+            "ReadOnly": "true",
+            "AccessKeyId": "AKIAXYFFBJ74PFFQKYRM",
+            "EventTime": "2026-06-08T22:51:27+03:00",
+            "EventSource": "iam.amazonaws.com",
+            "Username": "vulnerable-user",
+            "Resources": [],
+            "CloudTrailEvent": "{\"eventVersion\":\"1.11\",\"userIdentity\":{\"type\":\"IAMUser\",\"principalId\":\"AIDAXYFFBJ74DLYXAQ2AA\",\"arn\":\"arn:aws:iam::532922060792:user/vulnerable-user\",\"accountId\":\"532922060792\",\"accessKeyId\":\"AKIAXYFFBJ74PFFQKYRM\",\"userName\":\"vulnerable-user\"},\"eventTime\":\"2026-06-08T19:51:27Z\",\"eventSource\":\"iam.amazonaws.com\",\"eventName\":\"ListUsers\",\"awsRegion\":\"us-east-1\",\"sourceIPAddress\":\"78.101.130.87\",\"userAgent\":\"aws-cli/2.27.59 md/awscrt#0.26.1 ua/2.1 os/macos#24.6.0 md/arch#arm64 lang/python#3.13.5 md/pyimpl#CPython m/E,b,C,Z cfg/retry-mode#standard md/installer#source md/prompt#off md/command#iam.list-users\",\"requestParameters\":null,\"responseElements\":null,\"requestID\":\"8136546f-f8ea-4757-9a64-5fa049945503\",\"eventID\":\"68fa59f6-1a49-4cee-822b-92d75f8ddaed\",\"readOnly\":true,\"eventType\":\"AwsApiCall\",\"managementEvent\":true,\"recipientAccountId\":\"532922060792\",\"eventCategory\":\"Management\",\"tlsDetails\":{\"tlsVersion\":\"TLSv1.3\",\"cipherSuite\":\"TLS_AES_128_GCM_SHA256\",\"clientProvidedHostHeader\":\"iam.amazonaws.com\"}}"
+        },
+        {
+            "EventId": "c7ea40eb-c2e2-418c-bdbc-2892f2f10d9d",
+            "EventName": "CreateAccessKey",
+            "ReadOnly": "false",
+            "AccessKeyId": "AKIAXYFFBJ74PFFQKYRM",
+            "EventTime": "2026-06-08T22:49:48+03:00",
+            "EventSource": "iam.amazonaws.com",
+            "Username": "vulnerable-user",
+            "Resources": [
+                {
+                    "ResourceType": "AWS::IAM::AccessKey",
+                    "ResourceName": "AKIAXYFFBJ74GR4WIDNB"
+                },
+                {
+                    "ResourceType": "AWS::IAM::User",
+                    "ResourceName": "backdoor-user"
+                }
+            ],
+            "CloudTrailEvent": "{\"eventVersion\":\"1.11\",\"userIdentity\":{\"type\":\"IAMUser\",\"principalId\":\"AIDAXYFFBJ74DLYXAQ2AA\",\"arn\":\"arn:aws:iam::532922060792:user/vulnerable-user\",\"accountId\":\"532922060792\",\"accessKeyId\":\"AKIAXYFFBJ74PFFQKYRM\",\"userName\":\"vulnerable-user\"},\"eventTime\":\"2026-06-08T19:49:48Z\",\"eventSource\":\"iam.amazonaws.com\",\"eventName\":\"CreateAccessKey\",\"awsRegion\":\"us-east-1\",\"sourceIPAddress\":\"78.101.130.87\",\"userAgent\":\"aws-cli/2.27.59 md/awscrt#0.26.1 ua/2.1 os/macos#24.6.0 md/arch#arm64 lang/python#3.13.5 md/pyimpl#CPython m/Z,E,b cfg/retry-mode#standard md/installer#source md/prompt#off md/command#iam.create-access-key\",\"requestParameters\":{\"userName\":\"backdoor-user\"},\"responseElements\":{\"accessKey\":{\"userName\":\"backdoor-user\",\"accessKeyId\":\"AKIAXYFFBJ74GR4WIDNB\",\"status\":\"Active\",\"createDate\":\"Jun 8, 2026, 7:49:48 PM\"}},\"requestID\":\"e3b97876-9779-4ea9-a7d2-16ed0fbe48de\",\"eventID\":\"c7ea40eb-c2e2-418c-bdbc-2892f2f10d9d\",\"readOnly\":false,\"eventType\":\"AwsApiCall\",\"managementEvent\":true,\"recipientAccountId\":\"532922060792\",\"eventCategory\":\"Management\",\"tlsDetails\":{\"tlsVersion\":\"TLSv1.3\",\"cipherSuite\":\"TLS_AES_128_GCM_SHA256\",\"clientProvidedHostHeader\":\"iam.amazonaws.com\"}}"
+        },
+        {
+            "EventId": "1ead1ab7-9281-4261-941f-9007a9a4ec82",
+            "EventName": "AttachUserPolicy",
+            "ReadOnly": "false",
+            "AccessKeyId": "AKIAXYFFBJ74PFFQKYRM",
+            "EventTime": "2026-06-08T22:49:39+03:00",
+            "EventSource": "iam.amazonaws.com",
+            "Username": "vulnerable-user",
+            "Resources": [
+                {
+                    "ResourceType": "AWS::IAM::User",
+                    "ResourceName": "backdoor-user"
+                },
+                {
+                    "ResourceType": "AWS::IAM::Policy",
+                    "ResourceName": "arn:aws:iam::aws:policy/AdministratorAccess"
+                }
+            ],
+            "CloudTrailEvent": "{\"eventVersion\":\"1.11\",\"userIdentity\":{\"type\":\"IAMUser\",\"principalId\":\"AIDAXYFFBJ74DLYXAQ2AA\",\"arn\":\"arn:aws:iam::532922060792:user/vulnerable-user\",\"accountId\":\"532922060792\",\"accessKeyId\":\"AKIAXYFFBJ74PFFQKYRM\",\"userName\":\"vulnerable-user\"},\"eventTime\":\"2026-06-08T19:49:39Z\",\"eventSource\":\"iam.amazonaws.com\",\"eventName\":\"AttachUserPolicy\",\"awsRegion\":\"us-east-1\",\"sourceIPAddress\":\"78.101.130.87\",\"userAgent\":\"aws-cli/2.27.59 md/awscrt#0.26.1 ua/2.1 os/macos#24.6.0 md/arch#arm64 lang/python#3.13.5 md/pyimpl#CPython m/E,b,Z cfg/retry-mode#standard md/installer#source md/prompt#off md/command#iam.attach-user-policy\",\"requestParameters\":{\"userName\":\"backdoor-user\",\"policyArn\":\"arn:aws:iam::aws:policy/AdministratorAccess\"},\"responseElements\":null,\"requestID\":\"e140502a-bcc0-4d05-b762-d4ab655e84d0\",\"eventID\":\"1ead1ab7-9281-4261-941f-9007a9a4ec82\",\"readOnly\":false,\"eventType\":\"AwsApiCall\",\"managementEvent\":true,\"recipientAccountId\":\"532922060792\",\"eventCategory\":\"Management\",\"tlsDetails\":{\"tlsVersion\":\"TLSv1.3\",\"cipherSuite\":\"TLS_AES_128_GCM_SHA256\",\"clientProvidedHostHeader\":\"iam.amazonaws.com\"}}"
+        },
+        {
+            "EventId": "4c4db06d-b3b5-4f32-b534-437b5d69d46e",
+            "EventName": "CreateUser",
+            "ReadOnly": "false",
+            "AccessKeyId": "AKIAXYFFBJ74PFFQKYRM",
+            "EventTime": "2026-06-08T22:48:53+03:00",
+            "EventSource": "iam.amazonaws.com",
+            "Username": "vulnerable-user",
+            "Resources": [
+                {
+                    "ResourceType": "AWS::IAM::User",
+                    "ResourceName": "backdoor-user"
+                },
+                {
+                    "ResourceType": "AWS::IAM::User",
+                    "ResourceName": "AIDAXYFFBJ74O6NNBYKB2"
+                },
+                {
+                    "ResourceType": "AWS::IAM::User",
+                    "ResourceName": "arn:aws:iam::532922060792:user/backdoor-user"
+                }
+            ],
+            "CloudTrailEvent": "{\"eventVersion\":\"1.11\",\"userIdentity\":{\"type\":\"IAMUser\",\"principalId\":\"AIDAXYFFBJ74DLYXAQ2AA\",\"arn\":\"arn:aws:iam::532922060792:user/vulnerable-user\",\"accountId\":\"532922060792\",\"accessKeyId\":\"AKIAXYFFBJ74PFFQKYRM\",\"userName\":\"vulnerable-user\"},\"eventTime\":\"2026-06-08T19:48:53Z\",\"eventSource\":\"iam.amazonaws.com\",\"eventName\":\"CreateUser\",\"awsRegion\":\"us-east-1\",\"sourceIPAddress\":\"78.101.130.87\",\"userAgent\":\"aws-cli/2.27.59 md/awscrt#0.26.1 ua/2.1 os/macos#24.6.0 md/arch#arm64 lang/python#3.13.5 md/pyimpl#CPython m/b,Z,E cfg/retry-mode#standard md/installer#source md/prompt#off md/command#iam.create-user\",\"requestParameters\":{\"userName\":\"backdoor-user\"},\"responseElements\":{\"user\":{\"path\":\"/\",\"userName\":\"backdoor-user\",\"userId\":\"AIDAXYFFBJ74O6NNBYKB2\",\"arn\":\"arn:aws:iam::532922060792:user/backdoor-user\",\"createDate\":\"Jun 8, 2026, 7:48:53 PM\"}},\"requestID\":\"ffc2306f-80a3-4466-b88e-018364a60a94\",\"eventID\":\"4c4db06d-b3b5-4f32-b534-437b5d69d46e\",\"readOnly\":false,\"eventType\":\"AwsApiCall\",\"managementEvent\":true,\"recipientAccountId\":\"532922060792\",\"eventCategory\":\"Management\",\"tlsDetails\":{\"tlsVersion\":\"TLSv1.3\",\"cipherSuite\":\"TLS_AES_128_GCM_SHA256\",\"clientProvidedHostHeader\":\"iam.amazonaws.com\"}}"
+        },
+        {
+            "EventId": "255d0003-c482-4f27-83c1-4b9bc94d42e5",
+            "EventName": "ListBuckets",
+            "ReadOnly": "true",
+            "AccessKeyId": "AKIAXYFFBJ74PFFQKYRM",
+            "EventTime": "2026-06-08T22:47:39+03:00",
+            "EventSource": "s3.amazonaws.com",
+            "Username": "vulnerable-user",
+            "Resources": [],
+            "CloudTrailEvent": "{\"eventVersion\":\"1.11\",\"userIdentity\":{\"type\":\"IAMUser\",\"principalId\":\"AIDAXYFFBJ74DLYXAQ2AA\",\"arn\":\"arn:aws:iam::532922060792:user/vulnerable-user\",\"accountId\":\"532922060792\",\"accessKeyId\":\"AKIAXYFFBJ74PFFQKYRM\",\"userName\":\"vulnerable-user\"},\"eventTime\":\"2026-06-08T19:47:39Z\",\"eventSource\":\"s3.amazonaws.com\",\"eventName\":\"ListBuckets\",\"awsRegion\":\"us-east-1\",\"sourceIPAddress\":\"78.101.130.87\",\"userAgent\":\"[aws-cli/2.27.59 md/awscrt#0.26.1 ua/2.1 os/macos#24.6.0 md/arch#arm64 lang/python#3.13.5 md/pyimpl#CPython m/C,E,Z,b cfg/retry-mode#standard md/installer#source md/prompt#off md/command#s3.ls]\",\"requestParameters\":{\"Host\":\"s3.amazonaws.com\"},\"responseElements\":null,\"additionalEventData\":{\"SignatureVersion\":\"SigV4\",\"CipherSuite\":\"TLS_AES_128_GCM_SHA256\",\"bytesTransferredIn\":0,\"AuthenticationMethod\":\"AuthHeader\",\"x-amz-id-2\":\"wp4Bc4qDIKMO+HN36XXvZoGuLw0hlMVF6/Oj5nwnGgWz0sASfVdM5b8fMrJDTSEEdZdZdVabxXM=\",\"bytesTransferredOut\":575},\"requestID\":\"NRCA64WM57ERGWCS\",\"eventID\":\"255d0003-c482-4f27-83c1-4b9bc94d42e5\",\"readOnly\":true,\"eventType\":\"AwsApiCall\",\"managementEvent\":true,\"recipientAccountId\":\"532922060792\",\"eventCategory\":\"Management\",\"tlsDetails\":{\"tlsVersion\":\"TLSv1.3\",\"cipherSuite\":\"TLS_AES_128_GCM_SHA256\",\"clientProvidedHostHeader\":\"s3.amazonaws.com\"}}"
+        },
+        {
+            "EventId": "b35d043e-2972-40f4-81ac-31c2b49fcfe5",
+            "EventName": "GetAccountSummary",
+            "ReadOnly": "true",
+            "AccessKeyId": "AKIAXYFFBJ74PFFQKYRM",
+            "EventTime": "2026-06-08T22:46:50+03:00",
+            "EventSource": "iam.amazonaws.com",
+            "Username": "vulnerable-user",
+            "Resources": [],
+            "CloudTrailEvent": "{\"eventVersion\":\"1.11\",\"userIdentity\":{\"type\":\"IAMUser\",\"principalId\":\"AIDAXYFFBJ74DLYXAQ2AA\",\"arn\":\"arn:aws:iam::532922060792:user/vulnerable-user\",\"accountId\":\"532922060792\",\"accessKeyId\":\"AKIAXYFFBJ74PFFQKYRM\",\"userName\":\"vulnerable-user\"},\"eventTime\":\"2026-06-08T19:46:50Z\",\"eventSource\":\"iam.amazonaws.com\",\"eventName\":\"GetAccountSummary\",\"awsRegion\":\"us-east-1\",\"sourceIPAddress\":\"78.101.130.87\",\"userAgent\":\"aws-cli/2.27.59 md/awscrt#0.26.1 ua/2.1 os/macos#24.6.0 md/arch#arm64 lang/python#3.13.5 md/pyimpl#CPython m/E,Z,b cfg/retry-mode#standard md/installer#source md/prompt#off md/command#iam.get-account-summary\",\"requestParameters\":null,\"responseElements\":null,\"requestID\":\"f8aedd91-c155-4a15-9c9d-8bfe74e4bd5c\",\"eventID\":\"b35d043e-2972-40f4-81ac-31c2b49fcfe5\",\"readOnly\":true,\"eventType\":\"AwsApiCall\",\"managementEvent\":true,\"recipientAccountId\":\"532922060792\",\"eventCategory\":\"Management\",\"tlsDetails\":{\"tlsVersion\":\"TLSv1.3\",\"cipherSuite\":\"TLS_AES_128_GCM_SHA256\",\"clientProvidedHostHeader\":\"iam.amazonaws.com\"}}"
+        },
+        {
+            "EventId": "8c2ab4b8-e1cd-4516-9fc1-764c6e26f9c6",
+            "EventName": "ListPolicies",
+            "ReadOnly": "true",
+            "AccessKeyId": "AKIAXYFFBJ74PFFQKYRM",
+            "EventTime": "2026-06-08T22:46:43+03:00",
+            "EventSource": "iam.amazonaws.com",
+            "Username": "vulnerable-user",
+            "Resources": [],
+            "CloudTrailEvent": "{\"eventVersion\":\"1.11\",\"userIdentity\":{\"type\":\"IAMUser\",\"principalId\":\"AIDAXYFFBJ74DLYXAQ2AA\",\"arn\":\"arn:aws:iam::532922060792:user/vulnerable-user\",\"accountId\":\"532922060792\",\"accessKeyId\":\"AKIAXYFFBJ74PFFQKYRM\",\"userName\":\"vulnerable-user\"},\"eventTime\":\"2026-06-08T19:46:43Z\",\"eventSource\":\"iam.amazonaws.com\",\"eventName\":\"ListPolicies\",\"awsRegion\":\"us-east-1\",\"sourceIPAddress\":\"78.101.130.87\",\"userAgent\":\"aws-cli/2.27.59 md/awscrt#0.26.1 ua/2.1 os/macos#24.6.0 md/arch#arm64 lang/python#3.13.5 md/pyimpl#CPython m/C,E,b,Z cfg/retry-mode#standard md/installer#source md/prompt#off md/command#iam.list-policies\",\"requestParameters\":{\"scope\":\"Local\",\"onlyAttached\":false},\"responseElements\":null,\"requestID\":\"6e288021-0681-46f2-9dae-f7a3ebf6490c\",\"eventID\":\"8c2ab4b8-e1cd-4516-9fc1-764c6e26f9c6\",\"readOnly\":true,\"eventType\":\"AwsApiCall\",\"managementEvent\":true,\"recipientAccountId\":\"532922060792\",\"eventCategory\":\"Management\",\"tlsDetails\":{\"tlsVersion\":\"TLSv1.3\",\"cipherSuite\":\"TLS_AES_128_GCM_SHA256\",\"clientProvidedHostHeader\":\"iam.amazonaws.com\"}}"
+        },
+        {
+            "EventId": "57a7deae-51e2-4a7d-ac4c-5dd27c048e16",
+            "EventName": "ListGroups",
+            "ReadOnly": "true",
+            "AccessKeyId": "AKIAXYFFBJ74PFFQKYRM",
+            "EventTime": "2026-06-08T22:46:33+03:00",
+            "EventSource": "iam.amazonaws.com",
+            "Username": "vulnerable-user",
+            "Resources": [],
+            "CloudTrailEvent": "{\"eventVersion\":\"1.11\",\"userIdentity\":{\"type\":\"IAMUser\",\"principalId\":\"AIDAXYFFBJ74DLYXAQ2AA\",\"arn\":\"arn:aws:iam::532922060792:user/vulnerable-user\",\"accountId\":\"532922060792\",\"accessKeyId\":\"AKIAXYFFBJ74PFFQKYRM\",\"userName\":\"vulnerable-user\"},\"eventTime\":\"2026-06-08T19:46:33Z\",\"eventSource\":\"iam.amazonaws.com\",\"eventName\":\"ListGroups\",\"awsRegion\":\"us-east-1\",\"sourceIPAddress\":\"78.101.130.87\",\"userAgent\":\"aws-cli/2.27.59 md/awscrt#0.26.1 ua/2.1 os/macos#24.6.0 md/arch#arm64 lang/python#3.13.5 md/pyimpl#CPython m/Z,E,b,C cfg/retry-mode#standard md/installer#source md/prompt#off md/command#iam.list-groups\",\"requestParameters\":null,\"responseElements\":null,\"requestID\":\"0be34716-b8c2-4d27-ab53-8c8a2b47a1cd\",\"eventID\":\"57a7deae-51e2-4a7d-ac4c-5dd27c048e16\",\"readOnly\":true,\"eventType\":\"AwsApiCall\",\"managementEvent\":true,\"recipientAccountId\":\"532922060792\",\"eventCategory\":\"Management\",\"tlsDetails\":{\"tlsVersion\":\"TLSv1.3\",\"cipherSuite\":\"TLS_AES_128_GCM_SHA256\",\"clientProvidedHostHeader\":\"iam.amazonaws.com\"}}"
+        },
+        {
+            "EventId": "f54f5688-5ac4-448f-abb7-98d1e923c07d",
+            "EventName": "ListRoles",
+            "ReadOnly": "true",
+            "AccessKeyId": "AKIAXYFFBJ74PFFQKYRM",
+            "EventTime": "2026-06-08T22:45:43+03:00",
+            "EventSource": "iam.amazonaws.com",
+            "Username": "vulnerable-user",
+            "Resources": [],
+            "CloudTrailEvent": "{\"eventVersion\":\"1.11\",\"userIdentity\":{\"type\":\"IAMUser\",\"principalId\":\"AIDAXYFFBJ74DLYXAQ2AA\",\"arn\":\"arn:aws:iam::532922060792:user/vulnerable-user\",\"accountId\":\"532922060792\",\"accessKeyId\":\"AKIAXYFFBJ74PFFQKYRM\",\"userName\":\"vulnerable-user\"},\"eventTime\":\"2026-06-08T19:45:43Z\",\"eventSource\":\"iam.amazonaws.com\",\"eventName\":\"ListRoles\",\"awsRegion\":\"us-east-1\",\"sourceIPAddress\":\"78.101.130.87\",\"userAgent\":\"aws-cli/2.27.59 md/awscrt#0.26.1 ua/2.1 os/macos#24.6.0 md/arch#arm64 lang/python#3.13.5 md/pyimpl#CPython m/C,E,b,Z cfg/retry-mode#standard md/installer#source md/prompt#off md/command#iam.list-roles\",\"requestParameters\":null,\"responseElements\":null,\"requestID\":\"c1b6a668-f1e2-4930-b9f8-f451e6355230\",\"eventID\":\"f54f5688-5ac4-448f-abb7-98d1e923c07d\",\"readOnly\":true,\"eventType\":\"AwsApiCall\",\"managementEvent\":true,\"recipientAccountId\":\"532922060792\",\"eventCategory\":\"Management\",\"tlsDetails\":{\"tlsVersion\":\"TLSv1.3\",\"cipherSuite\":\"TLS_AES_128_GCM_SHA256\",\"clientProvidedHostHeader\":\"iam.amazonaws.com\"}}"
+        },
+        {
+            "EventId": "f7614689-c3a1-4be3-a0d4-362a306cd051",
+            "EventName": "ListUsers",
+            "ReadOnly": "true",
+            "AccessKeyId": "AKIAXYFFBJ74PFFQKYRM",
+            "EventTime": "2026-06-08T22:45:27+03:00",
+            "EventSource": "iam.amazonaws.com",
+            "Username": "vulnerable-user",
+            "Resources": [],
+            "CloudTrailEvent": "{\"eventVersion\":\"1.11\",\"userIdentity\":{\"type\":\"IAMUser\",\"principalId\":\"AIDAXYFFBJ74DLYXAQ2AA\",\"arn\":\"arn:aws:iam::532922060792:user/vulnerable-user\",\"accountId\":\"532922060792\",\"accessKeyId\":\"AKIAXYFFBJ74PFFQKYRM\",\"userName\":\"vulnerable-user\"},\"eventTime\":\"2026-06-08T19:45:27Z\",\"eventSource\":\"iam.amazonaws.com\",\"eventName\":\"ListUsers\",\"awsRegion\":\"us-east-1\",\"sourceIPAddress\":\"78.101.130.87\",\"userAgent\":\"aws-cli/2.27.59 md/awscrt#0.26.1 ua/2.1 os/macos#24.6.0 md/arch#arm64 lang/python#3.13.5 md/pyimpl#CPython m/C,b,Z,E cfg/retry-mode#standard md/installer#source md/prompt#off md/command#iam.list-users\",\"requestParameters\":null,\"responseElements\":null,\"requestID\":\"4078b51c-cc96-4383-bcd6-7f35ac5f098e\",\"eventID\":\"f7614689-c3a1-4be3-a0d4-362a306cd051\",\"readOnly\":true,\"eventType\":\"AwsApiCall\",\"managementEvent\":true,\"recipientAccountId\":\"532922060792\",\"eventCategory\":\"Management\",\"tlsDetails\":{\"tlsVersion\":\"TLSv1.3\",\"cipherSuite\":\"TLS_AES_128_GCM_SHA256\",\"clientProvidedHostHeader\":\"iam.amazonaws.com\"}}"
+        },
+        {
+            "EventId": "22ab6c01-1f47-4819-95c6-e9c44f038f28",
+            "EventName": "GetCallerIdentity",
+            "ReadOnly": "true",
+            "AccessKeyId": "AKIAXYFFBJ74PFFQKYRM",
+            "EventTime": "2026-06-08T22:44:28+03:00",
+            "EventSource": "sts.amazonaws.com",
+            "Username": "vulnerable-user",
+            "Resources": [],
+            "CloudTrailEvent": "{\"eventVersion\":\"1.11\",\"userIdentity\":{\"type\":\"IAMUser\",\"principalId\":\"AIDAXYFFBJ74DLYXAQ2AA\",\"arn\":\"arn:aws:iam::532922060792:user/vulnerable-user\",\"accountId\":\"532922060792\",\"accessKeyId\":\"AKIAXYFFBJ74PFFQKYRM\",\"userName\":\"vulnerable-user\"},\"eventTime\":\"2026-06-08T19:44:28Z\",\"eventSource\":\"sts.amazonaws.com\",\"eventName\":\"GetCallerIdentity\",\"awsRegion\":\"us-east-1\",\"sourceIPAddress\":\"78.101.130.87\",\"userAgent\":\"aws-cli/2.27.59 md/awscrt#0.26.1 ua/2.1 os/macos#24.6.0 md/arch#arm64 lang/python#3.13.5 md/pyimpl#CPython m/b,Z,E cfg/retry-mode#standard md/installer#source md/prompt#off md/command#sts.get-caller-identity\",\"requestParameters\":null,\"responseElements\":null,\"additionalEventData\":{\"ExtendedRequestId\":\"MTp1cy1lYXN0LTE6UzoxNzgwOTQ3ODY4NTY2Okc6Nk9qaENtVFQ=\",\"RequestDetails\":{\"awsServingRegion\":\"us-east-1\",\"endpointType\":\"global\"}},\"requestID\":\"09a7e673-4b58-4c30-9b8a-de7deba48dfc\",\"eventID\":\"22ab6c01-1f47-4819-95c6-e9c44f038f28\",\"readOnly\":true,\"eventType\":\"AwsApiCall\",\"managementEvent\":true,\"recipientAccountId\":\"532922060792\",\"eventCategory\":\"Management\",\"tlsDetails\":{\"tlsVersion\":\"TLSv1.3\",\"cipherSuite\":\"TLS_AES_128_GCM_SHA256\",\"clientProvidedHostHeader\":\"sts.amazonaws.com\"}}"
+        }
+    ]
+}

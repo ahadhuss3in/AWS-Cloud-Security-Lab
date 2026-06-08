@@ -1,0 +1,69 @@
+{
+    "Findings": [
+        {
+            "AccountId": "532922060792",
+            "Arn": "arn:aws:guardduty:us-east-1:532922060792:detector/8ecf545f5e2de9f99a60c9690ab93eaf/finding/26cf54620fc8d8fde24e8ed0127115a9",
+            "CreatedAt": "2026-06-08T19:44:45.969Z",
+            "Description": "The API GetFindingsStatistics was invoked using root credentials from IP address 78.101.130.87.",
+            "Id": "26cf54620fc8d8fde24e8ed0127115a9",
+            "Partition": "aws",
+            "Region": "us-east-1",
+            "Resource": {
+                "AccessKeyDetails": {
+                    "AccessKeyId": "ASIAXYFFBJ74MRLLGXF6",
+                    "PrincipalId": "532922060792",
+                    "UserName": "Root",
+                    "UserType": "Root"
+                },
+                "ResourceType": "AccessKey"
+            },
+            "SchemaVersion": "2.0",
+            "Service": {
+                "Action": {
+                    "ActionType": "AWS_API_CALL",
+                    "AwsApiCallAction": {
+                        "Api": "GetFindingsStatistics",
+                        "CallerType": "Remote IP",
+                        "RemoteIpDetails": {
+                            "City": {
+                                "CityName": "Doha"
+                            },
+                            "Country": {
+                                "CountryName": "Qatar"
+                            },
+                            "GeoLocation": {
+                                "Lat": 25.2925,
+                                "Lon": 51.5321
+                            },
+                            "IpAddressV4": "78.101.130.87",
+                            "Organization": {
+                                "Asn": "8781",
+                                "AsnOrg": "Ooredoo Q.S.C.",
+                                "Isp": "Ooredoo Qatar",
+                                "Org": "Ooredoo Qatar"
+                            }
+                        },
+                        "ServiceName": "guardduty.amazonaws.com",
+                        "AffectedResources": {}
+                    }
+                },
+                "Archived": false,
+                "Count": 115,
+                "DetectorId": "8ecf545f5e2de9f99a60c9690ab93eaf",
+                "EventFirstSeen": "2026-06-08T19:38:53.000Z",
+                "EventLastSeen": "2026-06-08T20:21:45.000Z",
+                "ResourceRole": "TARGET",
+                "ServiceName": "guardduty",
+                "AdditionalInfo": {
+                    "Value": "{}",
+                    "Type": "default"
+                },
+                "FeatureName": "CloudTrailManagementEvent"
+            },
+            "Severity": 2.0,
+            "Title": "The API GetFindingsStatistics was invoked using root credentials.",
+            "Type": "Policy:IAMUser/RootCredentialUsage",
+            "UpdatedAt": "2026-06-08T20:29:14.258Z"
+        }
+    ]
+}

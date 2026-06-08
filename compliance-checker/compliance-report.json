@@ -1,0 +1,221 @@
+{
+  "tool": "AWS Custom Compliance Checker",
+  "author": "Ahad Hussain",
+  "frameworks": [
+    "CIS AWS Benchmark v2.0",
+    "PCI DSS 3.2.1"
+  ],
+  "scan_time": "2026-06-08T20:51:09.074966+00:00",
+  "summary": {
+    "total": 20,
+    "passed": 15,
+    "failed": 5,
+    "by_severity": {
+      "CRITICAL": 3,
+      "HIGH": 1,
+      "MEDIUM": 1
+    }
+  },
+  "findings": [
+    {
+      "control_id": "CIS-2.1.5",
+      "title": "S3 Public Access Block",
+      "severity": "CRITICAL",
+      "resource": "s3://lab-cloudtrail-logs-532922",
+      "status": "PASS",
+      "description": "Bucket does not fully block public access \u2014 data is world-readable.",
+      "remediation": "Enable all four public access block settings on the bucket and account level.",
+      "timestamp": "2026-06-08T20:50:56.264681+00:00"
+    },
+    {
+      "control_id": "CIS-2.1.5",
+      "title": "S3 Public Access Block",
+      "severity": "CRITICAL",
+      "resource": "s3://lab-vulnerable-532922",
+      "status": "PASS",
+      "description": "Bucket does not fully block public access \u2014 data is world-readable.",
+      "remediation": "Enable all four public access block settings on the bucket and account level.",
+      "timestamp": "2026-06-08T20:50:56.860301+00:00"
+    },
+    {
+      "control_id": "CIS-2.1.1",
+      "title": "S3 Default Encryption",
+      "severity": "HIGH",
+      "resource": "s3://lab-cloudtrail-logs-532922",
+      "status": "PASS",
+      "description": "Bucket has no default encryption \u2014 objects stored in plaintext.",
+      "remediation": "Enable SSE-S3 or SSE-KMS default encryption on the bucket.",
+      "timestamp": "2026-06-08T20:50:58.394771+00:00"
+    },
+    {
+      "control_id": "CIS-2.1.1",
+      "title": "S3 Default Encryption",
+      "severity": "HIGH",
+      "resource": "s3://lab-vulnerable-532922",
+      "status": "PASS",
+      "description": "Bucket has no default encryption \u2014 objects stored in plaintext.",
+      "remediation": "Enable SSE-S3 or SSE-KMS default encryption on the bucket.",
+      "timestamp": "2026-06-08T20:50:59.196534+00:00"
+    },
+    {
+      "control_id": "CIS-1.5",
+      "title": "Root Account MFA",
+      "severity": "CRITICAL",
+      "resource": "iam::root",
+      "status": "PASS",
+      "description": "Root account has no MFA \u2014 full account takeover risk if credentials are exposed.",
+      "remediation": "Enable hardware or virtual MFA on the root account immediately.",
+      "timestamp": "2026-06-08T20:51:00.031248+00:00"
+    },
+    {
+      "control_id": "CIS-1.10",
+      "title": "IAM User MFA",
+      "severity": "CRITICAL",
+      "resource": "iam::user/lab-admin",
+      "status": "FAIL",
+      "description": "User lab-admin has no MFA \u2014 account compromise possible with credentials alone.",
+      "remediation": "Enable virtual or hardware MFA for all IAM users with console access.",
+      "timestamp": "2026-06-08T20:51:01.156100+00:00"
+    },
+    {
+      "control_id": "CIS-1.10",
+      "title": "IAM User MFA",
+      "severity": "CRITICAL",
+      "resource": "iam::user/vulnerable-user",
+      "status": "FAIL",
+      "description": "User vulnerable-user has no MFA \u2014 account compromise possible with credentials alone.",
+      "remediation": "Enable virtual or hardware MFA for all IAM users with console access.",
+      "timestamp": "2026-06-08T20:51:01.405021+00:00"
+    },
+    {
+      "control_id": "CIS-1.14",
+      "title": "Access Key Rotation (90-day)",
+      "severity": "HIGH",
+      "resource": "iam::user/lab-admin/key/AKIAXYFF...",
+      "status": "PASS",
+      "description": "Access key is 5 days old \u2014 exceeds 90-day rotation policy.",
+      "remediation": "Rotate access keys every 90 days. Automate with IAM credential reports.",
+      "timestamp": "2026-06-08T20:51:02.342887+00:00"
+    },
+    {
+      "control_id": "CIS-1.14",
+      "title": "Access Key Rotation (90-day)",
+      "severity": "HIGH",
+      "resource": "iam::user/vulnerable-user/key/AKIAXYFF...",
+      "status": "PASS",
+      "description": "Access key is 5 days old \u2014 exceeds 90-day rotation policy.",
+      "remediation": "Rotate access keys every 90 days. Automate with IAM credential reports.",
+      "timestamp": "2026-06-08T20:51:02.584953+00:00"
+    },
+    {
+      "control_id": "CIS-1.14",
+      "title": "Access Key Rotation (90-day)",
+      "severity": "HIGH",
+      "resource": "iam::user/vulnerable-user/key/AKIAXYFF...",
+      "status": "PASS",
+      "description": "Access key is 0 days old \u2014 exceeds 90-day rotation policy.",
+      "remediation": "Rotate access keys every 90 days. Automate with IAM credential reports.",
+      "timestamp": "2026-06-08T20:51:02.584989+00:00"
+    },
+    {
+      "control_id": "PCI-7.1",
+      "title": "No Direct Admin Policy",
+      "severity": "CRITICAL",
+      "resource": "iam::user/lab-admin",
+      "status": "FAIL",
+      "description": "User lab-admin has AdministratorAccess directly attached \u2014 violates least privilege.",
+      "remediation": "Use IAM roles with least-privilege policies. Remove direct admin attachment.",
+      "timestamp": "2026-06-08T20:51:03.487705+00:00"
+    },
+    {
+      "control_id": "PCI-7.1",
+      "title": "No Direct Admin Policy",
+      "severity": "CRITICAL",
+      "resource": "iam::user/vulnerable-user",
+      "status": "PASS",
+      "description": "User vulnerable-user has AdministratorAccess directly attached \u2014 violates least privilege.",
+      "remediation": "Use IAM roles with least-privilege policies. Remove direct admin attachment.",
+      "timestamp": "2026-06-08T20:51:03.705768+00:00"
+    },
+    {
+      "control_id": "CIS-3.1",
+      "title": "CloudTrail Actively Logging",
+      "severity": "CRITICAL",
+      "resource": "cloudtrail::lab-trail",
+      "status": "PASS",
+      "description": "Trail lab-trail exists but logging is OFF \u2014 API calls are not recorded.",
+      "remediation": "Start logging on the trail immediately.",
+      "timestamp": "2026-06-08T20:51:04.769069+00:00"
+    },
+    {
+      "control_id": "CIS-5.2",
+      "title": "SSH Not Open to World",
+      "severity": "CRITICAL",
+      "resource": "ec2::sg/sg-020423ed4fb2503c2 (vulnerable-sg)",
+      "status": "PASS",
+      "description": "SG vulnerable-sg allows SSH from anywhere \u2014 brute force and credential attack exposure.",
+      "remediation": "Restrict port 22 to specific CIDRs or use AWS Systems Manager Session Manager.",
+      "timestamp": "2026-06-08T20:51:05.592856+00:00"
+    },
+    {
+      "control_id": "CIS-5.2",
+      "title": "SSH Not Open to World",
+      "severity": "CRITICAL",
+      "resource": "ec2::sg/sg-06c37016f8a24b49d (default)",
+      "status": "PASS",
+      "description": "SG default allows SSH from anywhere \u2014 brute force and credential attack exposure.",
+      "remediation": "Restrict port 22 to specific CIDRs or use AWS Systems Manager Session Manager.",
+      "timestamp": "2026-06-08T20:51:05.592909+00:00"
+    },
+    {
+      "control_id": "CIS-5.3",
+      "title": "RDP Not Open to World",
+      "severity": "CRITICAL",
+      "resource": "ec2::sg/sg-020423ed4fb2503c2 (vulnerable-sg)",
+      "status": "PASS",
+      "description": "SG vulnerable-sg allows RDP from anywhere \u2014 remote desktop attack surface exposed.",
+      "remediation": "Restrict port 3389 to specific CIDRs or use VPN/bastion host.",
+      "timestamp": "2026-06-08T20:51:06.286324+00:00"
+    },
+    {
+      "control_id": "CIS-5.3",
+      "title": "RDP Not Open to World",
+      "severity": "CRITICAL",
+      "resource": "ec2::sg/sg-06c37016f8a24b49d (default)",
+      "status": "PASS",
+      "description": "SG default allows RDP from anywhere \u2014 remote desktop attack surface exposed.",
+      "remediation": "Restrict port 3389 to specific CIDRs or use VPN/bastion host.",
+      "timestamp": "2026-06-08T20:51:06.286374+00:00"
+    },
+    {
+      "control_id": "CIS-2.2.1",
+      "title": "EBS Volume Encryption",
+      "severity": "HIGH",
+      "resource": "ec2::volume/vol-0f55743c585520a08",
+      "status": "FAIL",
+      "description": "Volume vol-0f55743c585520a08 stores data unencrypted \u2014 data at rest is readable if snapshot is shared.",
+      "remediation": "Enable EBS account-level default encryption or encrypt this volume.",
+      "timestamp": "2026-06-08T20:51:07.079711+00:00"
+    },
+    {
+      "control_id": "CIS-3.9",
+      "title": "VPC Flow Logs Enabled",
+      "severity": "MEDIUM",
+      "resource": "ec2::vpc/vpc-07c4ee874cd18e206",
+      "status": "FAIL",
+      "description": "VPC vpc-07c4ee874cd18e206 has no flow logs \u2014 network traffic is invisible for forensics.",
+      "remediation": "Enable VPC Flow Logs to CloudWatch Logs or S3.",
+      "timestamp": "2026-06-08T20:51:08.130114+00:00"
+    },
+    {
+      "control_id": "AWS-GD-1",
+      "title": "GuardDuty Enabled",
+      "severity": "HIGH",
+      "resource": "guardduty::8ecf545f5e2de9f99a60c9690ab93eaf",
+      "status": "PASS",
+      "description": "GuardDuty detector exists but is not enabled.",
+      "remediation": "Enable the GuardDuty detector.",
+      "timestamp": "2026-06-08T20:51:09.071986+00:00"
+    }
+  ]
+}

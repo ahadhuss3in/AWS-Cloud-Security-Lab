@@ -1,0 +1,146 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: >
+  AWS Cloud Security Lab — Vulnerable Environment
+  Intentionally misconfigured for security assessment and detection engineering.
+  IMPORTANT: This is a controlled lab. Never deploy in production.
+  Author: Ahad Hussain
+
+Parameters:
+  AccountSuffix:
+    Type: String
+    Default: "532922"
+    Description: Last 6 digits of your account ID for unique bucket naming
+
+  AmiId:
+    Type: String
+    Default: ami-08e6829e013be2292
+    Description: Amazon Linux 2023 AMI ID (us-east-1)
+
+Resources:
+
+  # ─────────────────────────────────────────────────────────────
+  # S3 — Public bucket, no encryption
+  # Violations: CIS 2.1.1, CIS 2.1.5, PCI DSS Req 3/9
+  # ─────────────────────────────────────────────────────────────
+
+  VulnerableS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "lab-vulnerable-${AccountSuffix}"
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+        IgnorePublicAcls: false
+        BlockPublicPolicy: false
+        RestrictPublicBuckets: false
+      Tags:
+        - Key: Project
+          Value: aws-cloud-security-lab
+        - Key: Purpose
+          Value: intentionally-vulnerable
+
+  VulnerableS3BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    DependsOn: VulnerableS3Bucket
+    Properties:
+      Bucket: !Ref VulnerableS3Bucket
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: PublicReadForLab
+            Effect: Allow
+            Principal: "*"
+            Action: s3:GetObject
+            Resource: !Sub "${VulnerableS3Bucket.Arn}/*"
+
+  # ─────────────────────────────────────────────────────────────
+  # IAM — Overpermissioned user, no MFA enforced
+  # Violations: CIS 1.10, CIS 1.14, PCI DSS Req 7/8
+  # ─────────────────────────────────────────────────────────────
+
+  VulnerableIAMUser:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: vulnerable-user
+      Tags:
+        - Key: Project
+          Value: aws-cloud-security-lab
+
+  AdminPolicyAttachment:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: LabDirectAdminAccess
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action: "*"
+            Resource: "*"
+      Users:
+        - !Ref VulnerableIAMUser
+
+  # ─────────────────────────────────────────────────────────────
+  # EC2 — Wide-open security group, unencrypted EBS (default)
+  # Violations: CIS 5.2, CIS 5.3, CIS 2.2.1
+  # ─────────────────────────────────────────────────────────────
+
+  VulnerableSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: vulnerable-sg
+      GroupDescription: Intentionally misconfigured security group for lab assessment
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+          Description: SSH open to world - CIS 5.2 violation
+        - IpProtocol: tcp
+          FromPort: 3389
+          ToPort: 3389
+          CidrIp: 0.0.0.0/0
+          Description: RDP open to world - CIS 5.3 violation
+        - IpProtocol: "-1"
+          CidrIp: 0.0.0.0/0
+          Description: All traffic open - intentional worst-case misconfiguration
+      Tags:
+        - Key: Project
+          Value: aws-cloud-security-lab
+
+  VulnerableEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t3.micro
+      ImageId: !Ref AmiId
+      SecurityGroupIds:
+        - !Ref VulnerableSecurityGroup
+      # No KeyPair — intentional (no key = no actual SSH access despite open port)
+      # EBS encryption disabled by default
+      Tags:
+        - Key: Name
+          Value: lab-vulnerable-ec2
+        - Key: Project
+          Value: aws-cloud-security-lab
+
+  # ─────────────────────────────────────────────────────────────
+  # NOTE: CloudTrail and GuardDuty are intentionally NOT created here.
+  # Both are left disabled as misconfigurations for Prowler to find.
+  # They are enabled manually during the SOC track of this lab.
+  # ─────────────────────────────────────────────────────────────
+
+Outputs:
+
+  S3BucketName:
+    Description: Vulnerable S3 bucket name
+    Value: !Ref VulnerableS3Bucket
+
+  IAMUserName:
+    Description: Overpermissioned IAM user
+    Value: !Ref VulnerableIAMUser
+
+  SecurityGroupId:
+    Description: Vulnerable security group ID
+    Value: !Ref VulnerableSecurityGroup
+
+  EC2InstanceId:
+    Description: Vulnerable EC2 instance ID
+    Value: !Ref VulnerableEC2Instance
